@@ -1,0 +1,48 @@
+# -*- coding: utf-8 -*-
+
+import unittest
+
+from testing import calculation as calc
+
+
+class TestMultiply(unittest.TestCase):
+
+    def test_with_correct_values(self):
+        self.assertEqual(calc.multiply(10, 5), 50)
+        self.assertEqual(calc.multiply(-1, 1), -1)
+        self.assertEqual(calc.multiply(-1, -1), 1)
+
+
+class TestAdd(unittest.TestCase):
+
+    def test_with_correct_values(self):
+        self.assertEqual(calc.add(10, 5), 15)
+        self.assertEqual(calc.add(-1, 1), 0)
+        self.assertEqual(calc.add(-1, -1), -2)
+
+
+class TestSubtract(unittest.TestCase):
+
+    def test_with_correct_values(self):
+        self.assertEqual(calc.subtract(10, 5), 5)
+        self.assertEqual(calc.subtract(-1, 1), -2)
+        self.assertEqual(calc.subtract(-1, -1), 0)
+
+
+class TestDivide(unittest.TestCase):
+
+    def test_with_correct_values(self):
+        self.assertEqual(calc.divide(10, 5), 2)
+        self.assertEqual(calc.divide(-1, 1), -1)
+        self.assertEqual(calc.divide(-1, -1), 1)
+        self.assertEqual(calc.divide(5, 2), 2.5)
+
+    def test_with_zero(self):
+        with self.assertRaises(ValueError):
+            calc.divide(10, 0)
+
+
+# if __name__ == '__main__':
+#     unittest.main()
+
+# python -m unittest -v test_calc
