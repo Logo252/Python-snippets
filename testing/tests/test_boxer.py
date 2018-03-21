@@ -12,47 +12,45 @@ class TestBoxer(unittest.TestCase):
 
     # @classmethod
     # def setUpClass(cls):
-    #     print('setupClass')
+    #     print("setupClass")
     #
     # @classmethod
     # def tearDownClass(cls):
-    #     print('teardownClass')
+    #     print("teardownClass")
 
     # def setUp(self):
-    #     print('setUp')
+    #     print("setUp")
     #     self.boxer_1 = Boxer('Corey', 'Schafer', 50000)
     #     self.boxer_2 = Boxer('Sue', 'Smith', 60000)
     #
     # def tearDown(self):
-    #     print('tearDown\n')
+    #     print("tearDown")
 
     def test_fullname(self):
         print('test_fullname')
 
-        # ------------------------------------------------------------------
+        # TODO: Fix
         boxer_1 = Boxer('Corey', 'Schafer', 50000)
         boxer_2 = Boxer('Sue', 'Smith', 60000)
-        # ------------------------------------------------------------------
 
         self.assertEqual(boxer_1.full_name, 'Corey Schafer')
         self.assertEqual(boxer_2.full_name, 'Sue Smith')
 
-        # ------------------------------------------------------------------
         boxer_1.first_name = 'John'
         boxer_2.first_name = 'Jane'
-        # ------------------------------------------------------------------
 
         self.assertEqual(boxer_1.full_name, 'John Schafer')
         self.assertEqual(boxer_2.full_name, 'Jane Smith')
 
     @mock.patch("testing.boxer.requests.get")
+    # @mock.patch("testing.boxer.requests.get", return_value=)
+    # @mock.patch("testing.boxer.requests.get", side_effect=)
     def test_get_upcoming_fights(self, mock_requests_get):
         print('test_get_upcoming_fights')
 
-        # ------------------------------------------------------------------
+        # TODO: Fix
         boxer_1 = Boxer('Corey', 'Schafer', 50000)
         boxer_2 = Boxer('Sue', 'Smith', 60000)
-        # ------------------------------------------------------------------
 
         mock_requests_get.return_value.ok = True
         mock_requests_get.return_value.text = 'Success'

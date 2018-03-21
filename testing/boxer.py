@@ -24,7 +24,7 @@ class Boxer:
 
     def get_statistics(self):
         response = requests.get(
-            "https://boxingschedule.boxingsociety.com/statistics/".format(self.first_name, self.last_name))
+            "https://boxingschedule.boxingsociety.com/statistics/{}{}".format(self.first_name, self.last_name))
         if response.ok:
             return response.text
         else:

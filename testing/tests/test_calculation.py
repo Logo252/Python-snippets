@@ -6,6 +6,7 @@ from testing import calculation as calc
 
 
 class TestMultiply(unittest.TestCase):
+    """Test for the 'multiply' function."""
 
     def test_with_correct_values(self):
         self.assertEqual(calc.multiply(10, 5), 50)
@@ -14,6 +15,7 @@ class TestMultiply(unittest.TestCase):
 
 
 class TestAdd(unittest.TestCase):
+    """Test for the 'add' function."""
 
     def test_with_correct_values(self):
         self.assertEqual(calc.add(10, 5), 15)
@@ -22,6 +24,7 @@ class TestAdd(unittest.TestCase):
 
 
 class TestSubtract(unittest.TestCase):
+    """Test for the 'subtract' function."""
 
     def test_with_correct_values(self):
         self.assertEqual(calc.subtract(10, 5), 5)
@@ -30,6 +33,7 @@ class TestSubtract(unittest.TestCase):
 
 
 class TestDivide(unittest.TestCase):
+    """Test for the 'divide' function."""
 
     def test_with_correct_values(self):
         self.assertEqual(calc.divide(10, 5), 2)
@@ -40,7 +44,6 @@ class TestDivide(unittest.TestCase):
     def test_with_zero(self):
         with self.assertRaises(ValueError):
             calc.divide(10, 0)
-
 
 # if __name__ == '__main__':
 #     unittest.main()
