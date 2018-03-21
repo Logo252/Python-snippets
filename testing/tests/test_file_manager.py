@@ -41,6 +41,10 @@ class TestCopyFile(unittest.TestCase):
         self.assertEqual(calc.add(-1, 1), 0)
         self.assertEqual(calc.add(-1, -1), -2)
 
+    @classmethod
+    def tearDownClass(cls):
+        shutil.rmtree(cls.test_directory)
+
 # if __name__ == '__main__':
 #     unittest.main()
 
