@@ -15,6 +15,7 @@ class TestMultiply(unittest.TestCase):
         self.assertEqual(calc.multiply(-1, -1), 1)
 
 
+@unittest.skip  # no reason needed
 class TestAdd(unittest.TestCase):
     """Test for the 'add' function."""
 
@@ -25,7 +26,7 @@ class TestAdd(unittest.TestCase):
         self.assertEqual(calc.add(-1, -1), -2)
 
 
-# @unittest.skip("Skip class.")
+# @unittest.skip("Reason for skipping a class.")
 class TestSubtract(unittest.TestCase):
     """Test for the 'subtract' function."""
 
@@ -39,7 +40,7 @@ class TestSubtract(unittest.TestCase):
 class TestDivide(unittest.TestCase):
     """Test for the 'divide' function."""
 
-    # @unittest.skip("Skip method.")
+    # @unittest.skip("Reason for skipping a method.")
     def test_with_correct_values(self):
         """Should not raise any errors."""
         self.assertEqual(calc.divide(10, 5), 2)
@@ -51,7 +52,6 @@ class TestDivide(unittest.TestCase):
         """Should raise ZeroDivisionError error."""
         with self.assertRaises(ZeroDivisionError):
             calc.divide(10, 0)
-
 
 # if __name__ == '__main__':
 #     unittest.main()

@@ -4,23 +4,29 @@ import requests
 
 
 class Boxer:
+    """Contains Boxer info."""
+
     BAD_REQUEST_MESSAGE_UPCOMING_FIGHTS = "Couldn't get any upcoming fights! Bad request!"
     BAD_REQUEST_MESSAGE_STATISTICS = "Couldn't get any statistics! Bad request!"
 
     def __init__(self, first_name, last_name):
         self.first_name = first_name
         self.last_name = last_name
+        self.boxing_website = "https://boxingschedule.boxingsociety.com"
 
     @property
     def full_name(self):
+        """Returns the full name."""
         return '{} {}'.format(self.first_name, self.last_name)
 
     def get_upcoming_fights(self, month):
+        """Returns upcoming fights at specific month."""
         response = requests.get(
-            "https://boxingschedule.boxingsociety.com/fights/{}/{}{}".format(month, self.first_name, self.last_name))
+            "{0}/fights/{1}/{2}{3}".format(self.boxing_website, month, self.first_name, self.last_name))
         return response.text if response.ok else self.BAD_REQUEST_MESSAGE_UPCOMING_FIGHTS
 
     def get_statistics(self):
+        """Returns statistics."""
         response = requests.get(
-            "https://boxingschedule.boxingsociety.com/statistics/{}{}".format(self.first_name, self.last_name))
+            "{0}/statistics/{1}{2}".format(self.boxing_website, self.first_name, self.last_name))
         return response.text if response.ok else self.BAD_REQUEST_MESSAGE_STATISTICS
