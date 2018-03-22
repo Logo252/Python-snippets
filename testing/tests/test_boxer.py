@@ -13,6 +13,7 @@ class TestBoxer(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         print("setupClass")
+        cls.boxing_url = "https://boxingschedule.boxingsociety.com"
 
     def setUp(self):
         print("setUp")
@@ -35,25 +36,50 @@ class TestBoxer(unittest.TestCase):
         self.assertEqual(self.boxer_1.full_name, 'John Schafer')
         self.assertEqual(self.boxer_2.full_name, 'Jane Smith')
 
-    @mock.patch("testing.boxer.requests.get")
-    # @mock.patch("testing.boxer.requests.get", return_value=)
-    # @mock.patch("testing.boxer.requests.get", side_effect=)
-    def test_get_upcoming_fights(self, mock_requests_get):
+    # @mock.patch("testing.boxer.requests.get", return_value="Return")
+    # @mock.patch("testing.boxer.requests.get")
+    # def test_get_upcoming_fights(self, mock_requests_get):
+    #     """Shouldn't raise any exception!"""
+    #     print('test_get_upcoming_fights')
+    # 
+    #     mock_requests_get.return_value.ok = True
+    #     mock_requests_get.return_value.text = 'Success'
+    # 
+    #     fights = self.boxer_1.get_upcoming_fights('May')
+    #     mock_requests_get.assert_called_with('{}/fights/May/CoreySchafer'.format(self.boxing_url))
+    #     self.assertEqual(fights, 'Success')
+    # 
+    #     mock_requests_get.return_value.ok = False
+    # 
+    #     fights = self.boxer_2.get_upcoming_fights('June')
+    #     mock_requests_get.assert_called_with('{}/fights/June/SueSmith'.format(self.boxing_url))
+    #     self.assertEqual(fights, Boxer.BAD_REQUEST_MESSAGE_UPCOMING_FIGHTS)
+
+    #
+    def _mocked_requests_get(*args):
+        """This method will be used by the mock to replace requests.get method."""
+
+        class MockedResponse:
+            """Contains Mocked response attributes."""
+
+            def __init__(self, ok, text=None):
+                self.ok = ok
+                self.text = text
+
+        return MockedResponse(True, 'Success') if 'CoreySchafer' in args[0] else MockedResponse(False)
+
+    @mock.patch("testing.boxer.requests.get", side_effect=_mocked_requests_get)
+    def test_get_statistics(self, mock_requests_get):
         """Shouldn't raise any exception!"""
-        print('test_get_upcoming_fights')
+        print('test_get_statistics')
 
-        mock_requests_get.return_value.ok = True
-        mock_requests_get.return_value.text = 'Success'
-
-        fights = self.boxer_1.get_upcoming_fights('May')
-        mock_requests_get.assert_called_with('https://boxingschedule.boxingsociety.com/fights/May/CoreySchafer')
+        fights = self.boxer_1.get_statistics()
+        mock_requests_get.assert_called_with('{}/statistics/CoreySchafer'.format(self.boxing_url))
         self.assertEqual(fights, 'Success')
 
-        mock_requests_get.return_value.ok = False
-
-        fights = self.boxer_2.get_upcoming_fights('June')
-        mock_requests_get.assert_called_with('https://boxingschedule.boxingsociety.com/fights/June/SueSmith')
-        self.assertEqual(fights, Boxer.BAD_REQUEST_MESSAGE_UPCOMING_FIGHTS)
+        fights = self.boxer_2.get_statistics()
+        mock_requests_get.assert_called_with('{}/statistics/SueSmith'.format(self.boxing_url))
+        self.assertEqual(fights, Boxer.BAD_REQUEST_MESSAGE_STATISTICS)
 
     @classmethod
     def tearDownClass(cls):
