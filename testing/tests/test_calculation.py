@@ -57,3 +57,6 @@ class TestDivide(unittest.TestCase):
 #     unittest.main()
 
 # python -m unittest -v test_calc
+
+# python module.py -v
+# python module.py

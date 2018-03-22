@@ -89,3 +89,6 @@ class TestBoxer(unittest.TestCase):
 #     unittest.main()
 
 # python -m unittest -v test_boxer
+
+# python module.py -v
+# python module.py

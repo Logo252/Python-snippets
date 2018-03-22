@@ -86,3 +86,6 @@ class TestCopyFile(unittest.TestCase):
 #     unittest.main()
 
 # python -m unittest -v test_file_manager
+
+# python module.py -v
+# python module.py
