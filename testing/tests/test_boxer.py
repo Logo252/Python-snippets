@@ -55,31 +55,30 @@ class TestBoxer(unittest.TestCase):
     #     mock_requests_get.assert_called_with('{}/fights/June/SueSmith'.format(self.boxing_url))
     #     self.assertEqual(fights, Boxer.BAD_REQUEST_MESSAGE_UPCOMING_FIGHTS)
 
+    # def _mocked_requests_get(*args):
+    #     """This method will be used by the mock to replace requests.get method."""
     #
-    def _mocked_requests_get(*args):
-        """This method will be used by the mock to replace requests.get method."""
-
-        class MockedResponse:
-            """Contains Mocked response attributes."""
-
-            def __init__(self, ok, text=None):
-                self.ok = ok
-                self.text = text
-
-        return MockedResponse(True, 'Success') if 'CoreySchafer' in args[0] else MockedResponse(False)
-
-    @mock.patch("testing.boxer.requests.get", side_effect=_mocked_requests_get)
-    def test_get_statistics(self, mock_requests_get):
-        """Shouldn't raise any exception!"""
-        print('test_get_statistics')
-
-        fights = self.boxer_1.get_statistics()
-        mock_requests_get.assert_called_with('{}/statistics/CoreySchafer'.format(self.boxing_url))
-        self.assertEqual(fights, 'Success')
-
-        fights = self.boxer_2.get_statistics()
-        mock_requests_get.assert_called_with('{}/statistics/SueSmith'.format(self.boxing_url))
-        self.assertEqual(fights, Boxer.BAD_REQUEST_MESSAGE_STATISTICS)
+    #     class MockedResponse:
+    #         """Contains Mocked response attributes."""
+    #
+    #         def __init__(self, ok, text=None):
+    #             self.ok = ok
+    #             self.text = text
+    #
+    #     return MockedResponse(True, 'Success') if 'CoreySchafer' in args[0] else MockedResponse(False)
+    #
+    # @mock.patch("testing.boxer.requests.get", side_effect=_mocked_requests_get)
+    # def test_get_statistics(self, mock_requests_get):
+    #     """Shouldn't raise any exception!"""
+    #     print('test_get_statistics')
+    #
+    #     fights = self.boxer_1.get_statistics()
+    #     mock_requests_get.assert_called_with('{}/statistics/CoreySchafer'.format(self.boxing_url))
+    #     self.assertEqual(fights, 'Success')
+    #
+    #     fights = self.boxer_2.get_statistics()
+    #     mock_requests_get.assert_called_with('{}/statistics/SueSmith'.format(self.boxing_url))
+    #     self.assertEqual(fights, Boxer.BAD_REQUEST_MESSAGE_STATISTICS)
 
     @classmethod
     def tearDownClass(cls):
