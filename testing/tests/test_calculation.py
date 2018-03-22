@@ -25,7 +25,7 @@ class TestAdd(unittest.TestCase):
         self.assertEqual(calc.add(-1, -1), -2)
 
 
-# @unittest.skip("It does not test everything.")
+# @unittest.skip("Skip class.")
 class TestSubtract(unittest.TestCase):
     """Test for the 'subtract' function."""
 
@@ -39,6 +39,7 @@ class TestSubtract(unittest.TestCase):
 class TestDivide(unittest.TestCase):
     """Test for the 'divide' function."""
 
+    # @unittest.skip("Skip method.")
     def test_with_correct_values(self):
         """Should not raise any errors."""
         self.assertEqual(calc.divide(10, 5), 2)
