@@ -2,9 +2,10 @@
 
 import unittest
 
-import mock
-
 from testing.boxer import Boxer
+
+
+# import mock
 
 
 class TestBoxer(unittest.TestCase):
