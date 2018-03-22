@@ -15,7 +15,7 @@ class TestMultiply(unittest.TestCase):
         self.assertEqual(calc.multiply(-1, -1), 1)
 
 
-@unittest.skip  # no reason needed
+# @unittest.skip  # no reason needed
 class TestAdd(unittest.TestCase):
     """Test for the 'add' function."""
 
