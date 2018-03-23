@@ -42,12 +42,22 @@ class TestBoxer(unittest.TestCase):
 
         # Using context manager instead of decorator
         with mock.patch("testing.boxer.requests.get") as mock_requests_get:
-            mock_requests_get.return_value.ok = False
 
             # Test responses and used arguments
+            mock_requests_get.return_value = None
+
             next_opponent = self.boxer_2.get_next_opponent()
             mock_requests_get.assert_called_with('{}/SueSmith/next-opponent'.format(self.boxing_url))
             self.assertEqual(next_opponent, Boxer.BAD_REQUEST_MESSAGE_NEXT_OPPONENT)
+
+            # Test multiple side effects
+            mock_requests_get.side_effect = ["First opponent", UnboundLocalError, "Second opponent"]
+            self.assertEqual(self.boxer_2.get_next_opponent(), "First opponent")
+
+            with self.assertRaises(UnboundLocalError):
+                self.boxer_2.get_next_opponent()
+
+            self.assertEqual(self.boxer_2.get_next_opponent(), "Second opponent")
 
     # @mock.patch("testing.boxer.requests.get", return_value="Return")
     @mock.patch("testing.boxer.requests.get")
