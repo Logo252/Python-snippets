@@ -61,8 +61,10 @@ class TestBoxer(unittest.TestCase):
         """Shouldn't raise any exception!"""
         print('test_get_upcoming_fights')
 
+        # Test responses and used arguments
         mock_requests_get.return_value.ok = True
         mock_requests_get.return_value.text = 'Success'
+        mock_requests_get.return_value.aaaaaaaaaaaaaaaaaa = 'Success'
 
         fights = self.boxer_1.get_upcoming_fights('May')
         mock_requests_get.assert_called_with('{}/fights/May/CoreySchafer'.format(self.boxing_url))
@@ -73,6 +75,12 @@ class TestBoxer(unittest.TestCase):
         fights = self.boxer_2.get_upcoming_fights('June')
         mock_requests_get.assert_called_with('{}/fights/June/SueSmith'.format(self.boxing_url))
         self.assertEqual(fights, Boxer.BAD_REQUEST_MESSAGE_UPCOMING_FIGHTS)
+
+        # Test exceptions
+        mock_requests_get.side_effect = ValueError
+        with self.assertRaises(ValueError):
+            self.boxer_1.get_statistics()
+            self.boxer_2.get_statistics()
 
     def _mocked_requests_get(*args):
         """This method will be used by the mock to replace requests.get method."""
@@ -91,6 +99,7 @@ class TestBoxer(unittest.TestCase):
         """Shouldn't raise any exception!"""
         print('test_get_statistics')
 
+        # Test responses and used arguments
         fights = self.boxer_1.get_statistics()
         mock_requests_get.assert_called_with('{}/statistics/CoreySchafer'.format(self.boxing_url))
         self.assertEqual(fights, 'Success')
@@ -98,6 +107,15 @@ class TestBoxer(unittest.TestCase):
         fights = self.boxer_2.get_statistics()
         mock_requests_get.assert_called_with('{}/statistics/SueSmith'.format(self.boxing_url))
         self.assertEqual(fights, Boxer.BAD_REQUEST_MESSAGE_STATISTICS)
+
+        # Test exceptions
+        mock_requests_get.side_effect = TypeError
+        with self.assertRaises(TypeError):
+            self.boxer_1.get_statistics()
+
+        mock_requests_get.side_effect = ValueError
+        with self.assertRaises(ValueError):
+            self.boxer_2.get_statistics()
 
     @classmethod
     def tearDownClass(cls):
