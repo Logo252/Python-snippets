@@ -42,7 +42,6 @@ class TestBoxer(unittest.TestCase):
 
         # Using context manager instead of decorator
         with mock.patch("testing.boxer.requests.get") as mock_requests_get:
-
             # Test responses and used arguments
             mock_requests_get.return_value = None
 
@@ -58,6 +57,9 @@ class TestBoxer(unittest.TestCase):
                 self.boxer_2.get_next_opponent()
 
             self.assertEqual(self.boxer_2.get_next_opponent(), "Second opponent")
+
+            # Raises an exception calling method again
+            # self.boxer_2.get_next_opponent()
 
     # @mock.patch("testing.boxer.requests.get", return_value="Return")
     @mock.patch("testing.boxer.requests.get")
