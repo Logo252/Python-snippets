@@ -26,17 +26,17 @@ class Boxer:
             "{0}/fights/{1}/{2}{3}".format(self.boxing_url, month, self.first_name, self.last_name))
         return response.text if response.ok else self.BAD_REQUEST_MESSAGE_UPCOMING_FIGHTS
 
-    def get_statistics(self):
-        """Returns statistics."""
-        response = requests.get(
-            "{0}/statistics/{1}{2}".format(self.boxing_url, self.first_name, self.last_name))
-        return response.text if response.ok else self.BAD_REQUEST_MESSAGE_STATISTICS
-
     def get_next_opponent(self):
         """Returns next opponent's info."""
         response = requests.get(
             "{0}/{1}/{2}/next-opponent".format(self.boxing_url, self.first_name, self.last_name))
         return response.text if response.ok else self.BAD_REQUEST_MESSAGE_NEXT_OPPONENT
+
+    def get_statistics(self):
+        """Returns statistics."""
+        response = requests.get(
+            "{0}/statistics/{1}{2}".format(self.boxing_url, self.first_name, self.last_name))
+        return response.text if response.ok else self.BAD_REQUEST_MESSAGE_STATISTICS
 
 # if __name__ == '__main__':
 #     boxer = Boxer('', '')
