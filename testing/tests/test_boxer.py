@@ -3,6 +3,7 @@
 import unittest
 
 import mock
+import requests
 
 from testing.boxer import Boxer
 
@@ -41,7 +42,7 @@ class TestBoxer(unittest.TestCase):
         print('test_get_next_opponent')
 
         # Using context manager instead of decorator
-        with mock.patch("testing.boxer.requests.get") as mock_requests_get:
+        with mock.patch("requests.get") as mock_requests_get:
             # Test responses and used arguments
             mock_requests_get.return_value = None
 
@@ -61,8 +62,7 @@ class TestBoxer(unittest.TestCase):
             # Raises an exception calling method again
             # self.boxer_2.get_next_opponent()
 
-    # @mock.patch("testing.boxer.requests.get", return_value="Return")
-    @mock.patch("testing.boxer.requests.get")
+    @mock.patch("requests.get")
     def test_get_upcoming_fights(self, mock_requests_get):
         """Shouldn't raise any exception!"""
         print('test_get_upcoming_fights')
@@ -99,10 +99,14 @@ class TestBoxer(unittest.TestCase):
 
         return MockedResponse(True, 'Success') if 'CoreySchafer' in args[0] else MockedResponse(False)
 
-    @mock.patch("testing.boxer.requests.get", side_effect=_mocked_requests_get)
-    def test_get_statistics(self, mock_requests_get):
+    @mock.patch("requests.post", return_value='Post')
+    @mock.patch("requests.get", side_effect=_mocked_requests_get)
+    def test_get_statistics(self, mock_requests_get, mock_requests_post):
         """Shouldn't raise any exception!"""
         print('test_get_statistics')
+
+        # Test requests.post response
+        self.assertEqual(requests.post("Test URL"), "Post")
 
         # Test responses and used arguments
         statistics = self.boxer_1.get_statistics()
