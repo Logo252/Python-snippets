@@ -44,6 +44,7 @@ class TestBoxer(unittest.TestCase):
         with mock.patch("testing.boxer.requests.get") as mock_requests_get:
             mock_requests_get.return_value.ok = False
 
+            # Test responses and used arguments
             next_opponent = self.boxer_2.get_next_opponent()
             mock_requests_get.assert_called_with('{}/SueSmith/next-opponent'.format(self.boxing_url))
             self.assertEqual(next_opponent, Boxer.BAD_REQUEST_MESSAGE_NEXT_OPPONENT)
