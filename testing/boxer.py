@@ -8,6 +8,7 @@ class Boxer:
 
     BAD_REQUEST_MESSAGE_UPCOMING_FIGHTS = "Couldn't get any upcoming fights! Bad request!"
     BAD_REQUEST_MESSAGE_STATISTICS = "Couldn't get any statistics! Bad request!"
+    BAD_REQUEST_MESSAGE_NEXT_OPPONENT = "Couldn't get next opponent info! Bad request!"
 
     def __init__(self, first_name, last_name):
         self.first_name = first_name
@@ -31,6 +32,11 @@ class Boxer:
             "{0}/statistics/{1}{2}".format(self.boxing_url, self.first_name, self.last_name))
         return response.text if response.ok else self.BAD_REQUEST_MESSAGE_STATISTICS
 
+    def get_next_opponent(self):
+        """Returns next opponent's info."""
+        response = requests.get(
+            "{0}/{1}/{2}/next-opponent".format(self.boxing_url, self.first_name, self.last_name))
+        return response.text if response.ok else self.BAD_REQUEST_MESSAGE_NEXT_OPPONENT
 
 # if __name__ == '__main__':
 #     boxer = Boxer('', '')
