@@ -66,13 +66,13 @@ class TestBoxer(unittest.TestCase):
         mock_requests_get.return_value.text = 'Success'
         mock_requests_get.return_value.aaaaaaaaaaaaaaaaaa = 'Success'
 
-        fights = self.boxer_1.get_upcoming_fights('May')
+        fights = self.boxer_1.get_upcoming_fights(month='May')
         mock_requests_get.assert_called_with('{}/fights/May/CoreySchafer'.format(self.boxing_url))
         self.assertEqual(fights, 'Success')
 
         mock_requests_get.return_value.ok = False
 
-        fights = self.boxer_2.get_upcoming_fights('June')
+        fights = self.boxer_2.get_upcoming_fights(month='June')
         mock_requests_get.assert_called_with('{}/fights/June/SueSmith'.format(self.boxing_url))
         self.assertEqual(fights, Boxer.BAD_REQUEST_MESSAGE_UPCOMING_FIGHTS)
 
