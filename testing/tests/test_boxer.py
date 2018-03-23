@@ -62,6 +62,11 @@ class TestBoxer(unittest.TestCase):
             # Raises an exception calling method again
             # self.boxer_2.get_next_opponent()
 
+            # Test calls
+            mock_requests_get.assert_called()
+            # mock_requests_get.assert_called_once()
+            # mock_requests_get.assert_not_called()
+
     @mock.patch("requests.get")
     def test_get_upcoming_fights(self, mock_requests_get):
         """Shouldn't raise any exception!"""
