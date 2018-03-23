@@ -44,11 +44,11 @@ class TestBoxer(unittest.TestCase):
         with mock.patch("testing.boxer.requests.get") as mock_requests_get:
             mock_requests_get.return_value.ok = False
 
-            fights = self.boxer_2.get_next_opponent()
+            next_opponent = self.boxer_2.get_next_opponent()
             mock_requests_get.assert_called_with('{}/SueSmith/next-opponent'.format(self.boxing_url))
-            self.assertEqual(fights, Boxer.BAD_REQUEST_MESSAGE_NEXT_OPPONENT)
+            self.assertEqual(next_opponent, Boxer.BAD_REQUEST_MESSAGE_NEXT_OPPONENT)
 
-    @mock.patch("testing.boxer.requests.get", return_value="Return")
+    # @mock.patch("testing.boxer.requests.get", return_value="Return")
     @mock.patch("testing.boxer.requests.get")
     def test_get_upcoming_fights(self, mock_requests_get):
         """Shouldn't raise any exception!"""
@@ -93,13 +93,13 @@ class TestBoxer(unittest.TestCase):
         print('test_get_statistics')
 
         # Test responses and used arguments
-        fights = self.boxer_1.get_statistics()
+        statistics = self.boxer_1.get_statistics()
         mock_requests_get.assert_called_with('{}/statistics/CoreySchafer'.format(self.boxing_url))
-        self.assertEqual(fights, 'Success')
+        self.assertEqual(statistics, 'Success')
 
-        fights = self.boxer_2.get_statistics()
+        statistics = self.boxer_2.get_statistics()
         mock_requests_get.assert_called_with('{}/statistics/SueSmith'.format(self.boxing_url))
-        self.assertEqual(fights, Boxer.BAD_REQUEST_MESSAGE_STATISTICS)
+        self.assertEqual(statistics, Boxer.BAD_REQUEST_MESSAGE_STATISTICS)
 
         # Test exceptions
         mock_requests_get.side_effect = TypeError
