@@ -36,26 +36,19 @@ class TestBoxer(unittest.TestCase):
         self.assertEqual(self.boxer_1.full_name, 'John Schafer')
         self.assertEqual(self.boxer_2.full_name, 'Jane Smith')
 
-    # With context manager
-    # def test_get_upcoming_fights(self):
-    #     """Shouldn't raise any exception!"""
-    #     print('test_get_upcoming_fights')
-    #
-    #     with mock.patch("testing.boxer.requests.get") as mock_requests_get:
-    #         mock_requests_get.return_value.ok = True
-    #         mock_requests_get.return_value.text = 'Success'
-    #
-    #         fights = self.boxer_1.get_upcoming_fights('May')
-    #         mock_requests_get.assert_called_with('{}/fights/May/CoreySchafer'.format(self.boxing_url))
-    #         self.assertEqual(fights, 'Success')
-    #
-    #         mock_requests_get.return_value.ok = False
-    #
-    #         fights = self.boxer_2.get_upcoming_fights('June')
-    #         mock_requests_get.assert_called_with('{}/fights/June/SueSmith'.format(self.boxing_url))
-    #         self.assertEqual(fights, Boxer.BAD_REQUEST_MESSAGE_UPCOMING_FIGHTS)
+    def test_get_next_opponent(self):
+        """Shouldn't raise any exception!"""
+        print('test_get_next_opponent')
 
-    # @mock.patch("testing.boxer.requests.get", return_value="Return")
+        # Using context manager instead of decorator
+        with mock.patch("testing.boxer.requests.get") as mock_requests_get:
+            mock_requests_get.return_value.ok = False
+
+            fights = self.boxer_2.get_next_opponent()
+            mock_requests_get.assert_called_with('{}/SueSmith/next-opponent'.format(self.boxing_url))
+            self.assertEqual(fights, Boxer.BAD_REQUEST_MESSAGE_NEXT_OPPONENT)
+
+    @mock.patch("testing.boxer.requests.get", return_value="Return")
     @mock.patch("testing.boxer.requests.get")
     def test_get_upcoming_fights(self, mock_requests_get):
         """Shouldn't raise any exception!"""

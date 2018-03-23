@@ -29,7 +29,7 @@ class Boxer:
     def get_next_opponent(self):
         """Returns next opponent's info."""
         response = requests.get(
-            "{0}/{1}/{2}/next-opponent".format(self.boxing_url, self.first_name, self.last_name))
+            "{0}/{1}{2}/next-opponent".format(self.boxing_url, self.first_name, self.last_name))
         return response.text if response.ok else self.BAD_REQUEST_MESSAGE_NEXT_OPPONENT
 
     def get_statistics(self):
