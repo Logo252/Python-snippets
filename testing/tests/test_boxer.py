@@ -70,7 +70,6 @@ class TestBoxer(unittest.TestCase):
         # Test responses and used arguments
         mock_requests_get.return_value.ok = True
         mock_requests_get.return_value.text = 'Success'
-        mock_requests_get.return_value.aaaaaaaaaaaaaaaaaa = 'Success'
 
         fights = self.boxer_1.get_upcoming_fights(month='May')
         mock_requests_get.assert_called_with('{}/fights/May/CoreySchafer'.format(self.boxing_url))
