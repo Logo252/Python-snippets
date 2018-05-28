@@ -48,6 +48,7 @@ class Boxer:
             "{0}/statistics/{1}{2}".format(self._boxing_url, self._first_name, self._last_name))
         return response.text if response.ok else self.BAD_REQUEST_MESSAGE_STATISTICS
 
-# if __name__ == '__main__':
-#     boxer = Boxer('', '')
-#     boxer.get_upcoming_fights('55')
+
+if __name__ == '__main__':
+    boxer = Boxer('', '')
+    print(boxer.get_upcoming_fights('55'))
