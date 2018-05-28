@@ -29,6 +29,13 @@ def _create_directory(path_to_dir):
         os.makedirs(path_to_dir)
 
 
-# if __name__ == '__main__':
-#     print(move_file(os.path.join(os.getcwd(), 'test.txt'), 'examples'))
-#     print(copy_file(os.path.join(os.getcwd(), 'boxer.py'), 'examples'))
+if __name__ == '__main__':
+    cwd = os.getcwd()
+
+    test_file = os.path.join(cwd, 'test.txt')
+    if not os.path.isfile(test_file):
+        open(test_file, 'w').close()
+    print(move_file(test_file, 'examples'))
+
+    python_file = os.path.join(cwd, 'boxer.py')
+    print(copy_file(python_file, 'examples'))
