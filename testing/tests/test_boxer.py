@@ -18,8 +18,8 @@ class TestBoxer(unittest.TestCase):
 
     def setUp(self):
         print("setUp")
-        self.boxer_1 = Boxer('Corey', 'Schafer')
-        self.boxer_2 = Boxer('Sue', 'Smith')
+        self.boxer_1 = Boxer(first_name='Corey', last_name='Schafer')
+        self.boxer_2 = Boxer(first_name='Sue', last_name='Smith')
 
     def tearDown(self):
         print("tearDown")
