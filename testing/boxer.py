@@ -16,9 +16,19 @@ class Boxer:
         self._boxing_url = "https://boxingschedule.boxingsociety.com"
 
     @property
+    def first_name(self):
+        """Returns the first name."""
+        return '{}'.format(self._first_name)
+
+    @first_name.setter
+    def first_name(self, first_name):
+        """Sets the first name with given value."""
+        self._first_name = first_name
+
+    @property
     def full_name(self):
         """Returns the full name."""
-        return '{} {}'.format(self._first_name, self._last_name)
+        return '{} {}'.format(self.first_name, self._last_name)
 
     def get_upcoming_fights(self, month):
         """Returns upcoming fights at specific month."""

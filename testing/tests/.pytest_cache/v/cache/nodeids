@@ -1,0 +1,6 @@
+[
+  "test_boxer.py::TestBoxer::test_full_name", 
+  "test_boxer.py::TestBoxer::test_get_next_opponent", 
+  "test_boxer.py::TestBoxer::test_get_statistics", 
+  "test_boxer.py::TestBoxer::test_get_upcoming_fights"
+]
