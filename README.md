@@ -1,2 +1,2 @@
 # Python-snippets
-Python snippets
+This repository contains various Python snippets...
