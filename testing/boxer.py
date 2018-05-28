@@ -11,31 +11,31 @@ class Boxer:
     BAD_REQUEST_MESSAGE_NEXT_OPPONENT = "Couldn't get next opponent info! Bad request!"
 
     def __init__(self, first_name, last_name):
-        self.first_name = first_name
-        self.last_name = last_name
-        self.boxing_url = "https://boxingschedule.boxingsociety.com"
+        self._first_name = first_name
+        self._last_name = last_name
+        self._boxing_url = "https://boxingschedule.boxingsociety.com"
 
     @property
     def full_name(self):
         """Returns the full name."""
-        return '{} {}'.format(self.first_name, self.last_name)
+        return '{} {}'.format(self._first_name, self._last_name)
 
     def get_upcoming_fights(self, month):
         """Returns upcoming fights at specific month."""
         response = requests.get(
-            "{0}/fights/{1}/{2}{3}".format(self.boxing_url, month, self.first_name, self.last_name))
+            "{0}/fights/{1}/{2}{3}".format(self._boxing_url, month, self._first_name, self._last_name))
         return response.text if response.ok else self.BAD_REQUEST_MESSAGE_UPCOMING_FIGHTS
 
     def get_next_opponent(self):
         """Returns next opponent's info."""
         response = requests.get(
-            "{0}/{1}{2}/next-opponent".format(self.boxing_url, self.first_name, self.last_name))
+            "{0}/{1}{2}/next-opponent".format(self._boxing_url, self._first_name, self._last_name))
         return response if response is not None else self.BAD_REQUEST_MESSAGE_NEXT_OPPONENT
 
     def get_statistics(self):
         """Returns statistics."""
         response = requests.get(
-            "{0}/statistics/{1}{2}".format(self.boxing_url, self.first_name, self.last_name))
+            "{0}/statistics/{1}{2}".format(self._boxing_url, self._first_name, self._last_name))
         return response.text if response.ok else self.BAD_REQUEST_MESSAGE_STATISTICS
 
 # if __name__ == '__main__':

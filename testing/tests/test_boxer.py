@@ -31,8 +31,8 @@ class TestBoxer(unittest.TestCase):
         self.assertEqual(self.boxer_1.full_name, 'Corey Schafer')
         self.assertEqual(self.boxer_2.full_name, 'Sue Smith')
 
-        self.boxer_1.first_name = 'John'
-        self.boxer_2.first_name = 'Jane'
+        self.boxer_1._first_name = 'John'
+        self.boxer_2._first_name = 'Jane'
 
         self.assertEqual(self.boxer_1.full_name, 'John Schafer')
         self.assertEqual(self.boxer_2.full_name, 'Jane Smith')
