@@ -58,7 +58,7 @@ class TestCopyFile(unittest.TestCase):
 
         cls.invalid_directory = 55
         cls.invalid_file = 'Test'
-
+    
     def test_with_correct_values(self):
         """Should return new path to the copied file without any errors."""
         self.assertEqual(fm.copy_file(self.test_file, self.test_directory),
@@ -78,8 +78,9 @@ class TestCopyFile(unittest.TestCase):
     def tearDownClass(cls):
         shutil.rmtree(cls.test_directory, ignore_errors=True)
 
-# if __name__ == '__main__':
-#     unittest.main()
+
+if __name__ == '__main__':
+    unittest.main()
 
 # python -m unittest -v test_file_manager
 

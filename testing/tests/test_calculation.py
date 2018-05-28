@@ -53,8 +53,9 @@ class TestDivide(unittest.TestCase):
         with self.assertRaises(ZeroDivisionError):
             calc.divide(10, 0)
 
-# if __name__ == '__main__':
-#     unittest.main()
+
+if __name__ == '__main__':
+    unittest.main()
 
 # python -m unittest -v test_calc
 

@@ -135,8 +135,9 @@ class TestBoxer(unittest.TestCase):
     def tearDownClass(cls):
         print("teardownClass")
 
-# if __name__ == '__main__':
-#     unittest.main()
+
+if __name__ == '__main__':
+    unittest.main()
 
 # python -m unittest -v test_boxer
 
