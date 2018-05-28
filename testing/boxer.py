@@ -18,7 +18,7 @@ class Boxer:
     @property
     def first_name(self):
         """Returns the first name."""
-        return '{}'.format(self._first_name)
+        return self._first_name
 
     @first_name.setter
     def first_name(self, first_name):
