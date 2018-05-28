@@ -19,4 +19,3 @@ def multiply(x, y):
 def divide(x, y):
     """Divides numbers."""
     return float(x) / y
-
