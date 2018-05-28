@@ -2,8 +2,6 @@
 
 * [Repository Description](#repository-description)
 * [Requirements](#requirements)
-* [Prepare project](#download)
-* [Commands](#commands)
 
 # <a name="repository-description"></a> Repository description
 This repository contains various Python snippets...
