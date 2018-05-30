@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
 import unittest
+from unittest import mock
 
-import mock
 import requests
 
 from testing.boxer import Boxer
@@ -67,7 +67,7 @@ class TestBoxer(unittest.TestCase):
             # mock_requests_get.assert_called_once()
             # mock_requests_get.assert_not_called()
 
-    @mock.patch("requests.get")
+    @unittest.mock.patch("requests.get")
     def test_get_upcoming_fights(self, mock_requests_get):
         """Shouldn't raise any exception!"""
         print('test_get_upcoming_fights')
