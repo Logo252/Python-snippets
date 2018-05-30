@@ -13,5 +13,17 @@ def cats_blog():
     return "Cats blog!"
 
 
+@app.route('/cats/<name>')
+def show_cat(name):
+    """Shows the cat page with the given name."""
+    return "Cat - {}".format(name)
+
+
+@app.route('/post/<int:post_id>')
+def show_post(post_id):
+    """Shows the post with the given id."""
+    return 'Post - {}'.format(post_id)
+
+
 if __name__ == '__main__':
     app.run()
