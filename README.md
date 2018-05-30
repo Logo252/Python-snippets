@@ -7,6 +7,5 @@
 This repository contains various Python snippets...
 
 # <a name="requirements"></a>Requirements
-* Python >= 2.7
-* mock
+* Python >= 3.3
 * requests
