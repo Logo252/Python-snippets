@@ -4,12 +4,12 @@ app = Flask(__name__)
 
 
 @app.route('/')
-def index():
+def show_index():
     return "Index Page!"
 
 
 @app.route('/blog')
-def cats_blog():
+def show_cats_blog():
     return "Cats blog!"
 
 
